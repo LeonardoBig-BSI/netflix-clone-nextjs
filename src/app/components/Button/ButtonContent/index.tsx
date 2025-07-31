@@ -1,19 +1,20 @@
+import { ReactNode } from "react";
 
 interface ButtonProps {
     type?: 'submit' | 'button';
     className?: string;
-    text: string;
     onClick?: () => void;
+    children: ReactNode;
 }
 
-export const ButtonContent = ({ type, className, text, onClick }: ButtonProps) => {
+export const ButtonContent = ({ type, className, children, onClick }: ButtonProps) => {
     return (
         <button
             type={type}
             className={className}
             onClick={onClick}
         >
-            {text}
+            {children}
         </button>
     )
 }
