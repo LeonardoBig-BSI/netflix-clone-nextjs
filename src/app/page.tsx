@@ -1,10 +1,36 @@
 import { Button } from "./components/Button";
+import { Header } from "./components/Header";
 import { Profile } from "./components/Profile";
 
 export default function Home() {
   return (
-    <div>
-      <main className="container">
+    <main>
+      <div className="relative w-full min-h-screen bg-[url('/netflix-banner.jpg')] bg-cover bg-center">
+        {/* Escurece um pouco o banner (Overlay) */}
+        <div className="absolute inset-0 bg-black/60 z-0" />
+
+        {/* Header */}
+        <div className="relative z-10">
+          <Header.Root>
+            <Header.Content>
+              <Header.Logo />
+
+              <div className="flex items-center gap-4">
+                <Header.Language />
+
+                <Button.Root>
+                  <Button.Content className="mr-20 px-4 py-[6px] rounded-md bg-colorButton hover:bg-colorButtonHover duration-300">
+                    <Button.Text text="Entrar" className="text-white font-bold" />
+                  </Button.Content>
+                </Button.Root>
+              </div>
+
+            </Header.Content>
+          </Header.Root>
+        </div>
+      </div>
+
+      {/* <main className="container">
         <Profile.Root>
           <Profile.Content text="Quem está assistindo?">
             <Profile.Image />
@@ -20,7 +46,7 @@ export default function Home() {
           </Button.Root>
 
         </Profile.Root>
-      </main>
-    </div>
+      </main> */}
+    </main>
   );
 }

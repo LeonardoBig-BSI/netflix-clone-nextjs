@@ -1,6 +1,15 @@
 
-export const ButtonText = ({text}: {text: string;}) => {
-    return(
-        <><span>{text}</span></>
+interface ButtonTextProps {
+    text: string;
+    className?: string;
+}
+
+export const ButtonText = ({ text, className }: ButtonTextProps) => {
+    return (
+        <>
+            <span className={className}>
+                {text}
+            </span>
+        </>
     )
 }

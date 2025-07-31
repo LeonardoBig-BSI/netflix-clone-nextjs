@@ -7,13 +7,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Netflix",
+  title: "Netflix Clone",
   description: "Réplica da Netflix",
-  icons: '/netflix-logo.png',
+  icons: '/netflix-icon.png',
   openGraph: {
-    title: "Netflix",
+    title: "Netflix Clone",
     description: "Réplica da Netflix",
-    images: "/netflix-logo.png",
+    images: "/netflix-icon.png",
   }
 };
 
