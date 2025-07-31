@@ -1,14 +1,14 @@
 import { Button } from "./components/Button";
-import { MainProfile } from "./components/MainProfile";
+import { Profile } from "./components/Profile";
 
 export default function Home() {
   return (
     <div>
       <main className="container">
-        <MainProfile.Root>
-          <MainProfile.Content text="Quem está assistindo?">
-            <MainProfile.Image />
-          </MainProfile.Content>
+        <Profile.Root>
+          <Profile.Content text="Quem está assistindo?">
+            <Profile.Image />
+          </Profile.Content>
 
           <Button.Root>
             <Button.Content
@@ -19,7 +19,7 @@ export default function Home() {
             </Button.Content>
           </Button.Root>
 
-        </MainProfile.Root>
+        </Profile.Root>
       </main>
     </div>
   );

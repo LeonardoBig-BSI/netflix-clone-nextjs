@@ -5,10 +5,10 @@ interface MainProfileContentProps {
     children: ReactNode
 }
 
-export const MainProfileContent = ({text, children}: MainProfileContentProps) => {
+export const ProfileContent = ({text, children}: MainProfileContentProps) => {
     return(
         <>
-            <h1 className="text-white text-2xl md:text-4xl">{text}</h1>
+            <h1 className="text-white text-2xl md:text-4xl font-bold">{text}</h1>
 
             {children}
         </>

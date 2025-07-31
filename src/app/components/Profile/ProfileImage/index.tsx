@@ -7,7 +7,7 @@ import profileGreen from '../images/profile-green.jpeg';
 import profileYellow from '../images/profile-yellow.jpeg';
 import { Button } from "../../Button";
 
-export const MainProfileImage = () => {
+export const ProfileImage = () => {
     return (
         <div className="mt-8 flex flex-col md:flex-row justify-center items-center gap-8">
             
