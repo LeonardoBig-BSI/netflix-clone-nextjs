@@ -44,6 +44,6 @@ export const MainProfileImage = () => {
                     height={150}
                     className="border-0 hover:border-4 hover:border-white rounded-md cursor-pointer"
                 />
-            </div>
+        </div>
     )
 }
