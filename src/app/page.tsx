@@ -5,12 +5,12 @@ import { Profile } from "./components/Profile";
 export default function Home() {
   return (
     <main>
-      <div className="relative w-full min-h-screen bg-[url('/netflix-banner.jpg')] bg-cover bg-center">
+      <div className="relative w-full min-h-screen bg-[url('/netflix-banner.jpg')] bg-cover bg-center bg-no-repeat">
         {/* Escurece um pouco o banner (Overlay) */}
         <div className="absolute inset-0 bg-black/60 z-0" />
 
         {/* Header */}
-        <div className="relative z-10">
+        <div className="relative z-10 w-full">
           <Header.Root>
             <Header.Content>
               <Header.Logo />
@@ -19,7 +19,7 @@ export default function Home() {
                 <Header.Language />
 
                 <Button.Root>
-                  <Button.Content className="mr-20 px-4 py-[6px] rounded-md bg-colorButton hover:bg-colorButtonHover duration-300">
+                  <Button.Content className="px-4 py-[6px] rounded-md bg-colorButton hover:bg-colorButtonHover duration-300">
                     <Button.Text text="Entrar" className="text-white font-bold" />
                   </Button.Content>
                 </Button.Root>

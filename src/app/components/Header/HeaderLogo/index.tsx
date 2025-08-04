@@ -8,7 +8,7 @@ export const HeaderLogo = () => {
                 alt="Logo Netflix"
                 width={160}
                 height={160}
-                className="p-2 ml-20"
+                className="p-2 ml-4 sm:ml-20 w-28 sm:w-40"
             />
         </>
     )
