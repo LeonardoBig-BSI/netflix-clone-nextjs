@@ -1,6 +1,9 @@
+import { ChevronRight } from "lucide-react";
 import { Button } from "./components/Button";
 import { Header } from "./components/Header";
+import { Input } from "./components/Input";
 import { Profile } from "./components/Profile";
+import { Intro } from "./components/Intro";
 
 export default function Home() {
   return (
@@ -27,6 +30,10 @@ export default function Home() {
 
             </Header.Content>
           </Header.Root>
+
+          <section className="px-4 mt-10 md:mt-28 flex flex-col justify-center items-center text-center">
+            <Intro />
+          </section>
         </div>
       </div>
 
