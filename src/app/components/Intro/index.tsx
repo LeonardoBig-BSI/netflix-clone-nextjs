@@ -1,9 +1,17 @@
+"use client"
+
 import { ChevronRight } from "lucide-react"
 
 import { Button } from "../Button"
 import { Input } from "../Input"
+import { redirect } from "next/navigation"
 
 export const Intro = () => {
+
+  function handleRegister() {
+    redirect("/register");
+  }
+
   return (
     <>
       <h1 className="text-4xl md:text-6xl text-white font-extrabold text-center leading-snug">
@@ -31,7 +39,7 @@ export const Intro = () => {
 
         <div>
           <Button.Root>
-            <Button.Content className="mt-2 md:mt-0 px-4 py-4 md:px-8 md:py-3 rounded-md bg-colorButton hover:bg-colorButtonHover duration-300">
+            <Button.Content onClick={handleRegister} className="mt-2 md:mt-0 px-4 py-4 md:px-8 md:py-3 rounded-md bg-colorButton hover:bg-colorButtonHover duration-300">
               <div className="flex flex-row justify-center items-center gap-2">
                 <Button.Text text="Vamos lá" className="text-xl md:text-2xl text-white font-bold" />
 
