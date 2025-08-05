@@ -3,6 +3,7 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 
 export default function Login() {
+
     return (
         <div className="mt-8 flex justify-center items-center">
             <div className="mb-8 w-full max-w-lg p-2 bg-black/70 rounded-md">
@@ -46,7 +47,7 @@ export default function Login() {
                     </form>
 
                     <p className="mt-0">
-                        <Link href="/" className="text-white text-base underline">
+                        <Link href="#" className="text-white text-base underline">
                             Esqueceu a senha?
                         </Link>
                     </p>
@@ -54,7 +55,7 @@ export default function Login() {
 
                 <p className="m-8 text-zinc-400 text-base">
                     Primeira vez aqui?
-                    <Link href="/" className="text-white text-base font-bold hover:underline">
+                    <Link href="#" className="text-white text-base font-bold hover:underline">
                         Assine agora.
                     </Link>
                 </p>
