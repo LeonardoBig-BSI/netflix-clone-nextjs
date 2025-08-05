@@ -1,11 +1,19 @@
+"use client"
+
 import { ChevronRight } from "lucide-react";
 import { Button } from "./components/Button";
 import { Header } from "./components/Header";
 import { Input } from "./components/Input";
 import { Profile } from "./components/Profile";
 import { Intro } from "./components/Intro";
+import { redirect } from "next/navigation";
 
 export default function Home() {
+
+  function handleLogin() {
+    redirect('/login');
+  }
+
   return (
     <main>
       <div className="relative w-full min-h-screen bg-[url('/netflix-banner.jpg')] bg-cover bg-center bg-no-repeat">
@@ -22,7 +30,7 @@ export default function Home() {
                 <Header.Language />
 
                 <Button.Root>
-                  <Button.Content className="px-4 py-[6px] rounded-md bg-colorButton hover:bg-colorButtonHover duration-300">
+                  <Button.Content onClick={handleLogin} className="px-4 py-[6px] rounded-md bg-colorButton hover:bg-colorButtonHover duration-300">
                     <Button.Text text="Entrar" className="text-white font-bold" />
                   </Button.Content>
                 </Button.Root>

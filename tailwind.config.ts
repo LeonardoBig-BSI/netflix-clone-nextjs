@@ -8,7 +8,9 @@ export default {
       extend: {
         colors: {
           colorButton: '#E50914',
-          colorButtonHover: '#c2060f'
+          colorButtonHover: '#c2060f',
+          colorButtonCodeAccess: "rgb(107 114 128 / 0.4)",
+          colorButtonCodeAccessHover: "rgb(63 63 70 / 0.6)"
         }
       },
     },

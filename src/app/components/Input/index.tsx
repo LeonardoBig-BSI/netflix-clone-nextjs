@@ -1,18 +1,28 @@
 import { TextField } from "@mui/material"
 
-export const Input = () => {
+interface InputProps {
+    type: string;
+    label: string;
+    xs?: string;
+    sm?: string;
+    md?: string;
+}
+
+export const Input = ({ type, label, xs, sm, md }: InputProps) => {
     return (
         <>
             <TextField
                 id="outlined-basic"
-                label="Email"
+                label={label}
                 variant="outlined"
+                type={type}
                 sx={{
                     width: {
-                        xs: "90vw",  // aumenta bastante no mobile (quase a largura da tela)
-                        sm: "400px",
-                        md: "500px",
+                        xs,
+                        sm,
+                        md,
                     },
+                    marginBottom: "16px",
                     "& .MuiOutlinedInput-root": {
                         backgroundColor: "rgba(0, 0, 0, 0.6)",
                         color: "#d1d5db", // texto cinza claro (Tailwind gray-300)
