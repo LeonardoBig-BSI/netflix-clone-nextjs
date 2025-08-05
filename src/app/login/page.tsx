@@ -1,8 +1,15 @@
+"use client"
+
 import Link from "next/link";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
+import { redirect } from "next/navigation";
 
 export default function Login() {
+
+    function handleProfile() {
+        redirect('/profile');
+    }
 
     return (
         <div className="mt-8 flex justify-center items-center">
@@ -12,7 +19,7 @@ export default function Login() {
                 </h1>
 
                 <div className="flex flex-col justify-center items-center gap-4">
-                    <form className="max-w-lg flex flex-col justify-center items-center gap-4">
+                    <form action={handleProfile} className="max-w-lg flex flex-col justify-center items-center gap-4">
                         <Input
                             type="email"
                             label="Email"
@@ -55,7 +62,7 @@ export default function Login() {
 
                 <p className="m-8 text-zinc-400 text-base">
                     Primeira vez aqui?
-                    <Link href="#" className="text-white text-base font-bold hover:underline">
+                    <Link href="/register" className="text-white text-base font-bold hover:underline">
                         Assine agora.
                     </Link>
                 </p>
