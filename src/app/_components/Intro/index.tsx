@@ -30,8 +30,9 @@ export const Intro = () => {
       <div className="flex flex-col md:flex-row justify-center gap-2">
 
         <Input
-          type="email"
+          type="text"
           label="Email"
+          name="email"
           xs="90vw"
           sm="400px"
           md="500px"
