@@ -3,17 +3,19 @@ import { TextField } from "@mui/material"
 interface InputProps {
     type: string;
     label: string;
+    name: string;
     xs?: string;
     sm?: string;
     md?: string;
 }
 
-export const Input = ({ type, label, xs, sm, md }: InputProps) => {
+export const Input = ({ type, label, name, xs, sm, md }: InputProps) => {
     return (
         <>
             <TextField
                 id="outlined-basic"
                 label={label}
+                name={name}
                 variant="outlined"
                 type={type}
                 sx={{

@@ -1,8 +1,8 @@
 "use client"
 
 import { redirect } from "next/navigation";
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
+import { Button } from "../_components/Button";
+import { Input } from "../_components/Input";
 import Link from "next/link";
 
 

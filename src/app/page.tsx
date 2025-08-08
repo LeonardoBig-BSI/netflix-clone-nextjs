@@ -1,11 +1,11 @@
 "use client"
 
 import { ChevronRight } from "lucide-react";
-import { Button } from "./components/Button";
-import { Header } from "./components/Header";
-import { Input } from "./components/Input";
-import { Profile } from "./components/Profile";
-import { Intro } from "./components/Intro";
+import { Button } from "./_components/Button";
+import { Header } from "./_components/Header";
+import { Input } from "./_components/Input";
+import { Profile } from "./_components/Profile";
+import { Intro } from "./_components/Intro";
 import { redirect } from "next/navigation";
 
 export default function Home() {
@@ -17,6 +17,7 @@ export default function Home() {
   return (
     <main>
       <div className="relative w-full min-h-screen bg-[url('/netflix-banner.jpg')] bg-cover bg-center bg-no-repeat">
+        
         {/* Escurece um pouco o banner (Overlay) */}
         <div className="absolute inset-0 bg-black/60 z-0" />
 
@@ -44,24 +45,6 @@ export default function Home() {
           </section>
         </div>
       </div>
-
-      {/* <main className="container">
-        <Profile.Root>
-          <Profile.Content text="Quem está assistindo?">
-            <Profile.Image />
-          </Profile.Content>
-
-          <Button.Root>
-            <Button.Content
-              className="my-10 md:mt-20 px-10 py-2 bg-zinc-900 border border-zinc-500 text-zinc-500 hover:border-white hover:text-white"
-              
-            >
-              <Button.Text text="Gerenciar Perfis" />
-            </Button.Content>
-          </Button.Root>
-
-        </Profile.Root>
-      </main> */}
     </main>
   );
 }
