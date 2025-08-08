@@ -2,7 +2,7 @@ import { TextField } from "@mui/material"
 
 interface InputProps {
     type: string;
-    label: string;
+    label?: string;
     name: string;
     xs?: string;
     sm?: string;
