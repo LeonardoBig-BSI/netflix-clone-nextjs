@@ -23,6 +23,7 @@ export default function Register() {
                     <Input
                         type="text"
                         label="Nome Completo"
+                        name="name"
                         md="425px"
                         sm="280px"
                         xs="280px"
@@ -31,6 +32,7 @@ export default function Register() {
                     <Input
                         type="password"
                         label="Senha"
+                        name="password"
                         md="425px"
                         sm="280px"
                         xs="280px"
@@ -39,6 +41,7 @@ export default function Register() {
                     <Input
                         type="text"
                         label="Data de Nascimento"
+                        name="text_date"
                         md="425px"
                         sm="280px"
                         xs="280px"
@@ -47,6 +50,7 @@ export default function Register() {
                     <Input
                         type="address"
                         label="Endereço"
+                        name="address"
                         md="425px"
                         sm="280px"
                         xs="280px"
