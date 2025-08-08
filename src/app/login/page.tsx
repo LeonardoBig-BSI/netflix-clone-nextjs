@@ -20,18 +20,18 @@ export default function Login() {
         const validationEmail = handleValidationEmail(email);
         const validationPassword = handleValidationPassword(password);
 
-        const newErrors: { email?: string, password?: string } = {}
+        const errorIn: { email?: string, password?: string } = {}
 
         if (!validationEmail.status) {
-            newErrors.email = validationEmail.error!;
+            errorIn.email = validationEmail.error!;
         }
 
         if (!validationPassword.status) {
-            newErrors.password = validationPassword.error!;
+            errorIn.password = validationPassword.error!;
         }
 
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
+        if (Object.keys(errorIn).length > 0) {
+            setErrors(errorIn);
             return;
         }
 
