@@ -1,51 +1,48 @@
 import { TextField } from "@mui/material"
+import { forwardRef } from "react";
 
-interface InputProps {
+interface InputProps extends React.ComponentPropsWithRef<typeof TextField>{
     type: string;
     label: string;
-    name: string;
     xs?: string;
     sm?: string;
     md?: string;
+    error?: boolean;
 }
 
-export const Input = ({ type, label, name, xs, sm, md }: InputProps) => {
-    return (
-        <>
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+    ({ type, label, xs, sm, md, error, ...rest }, ref) => {
+        return (
             <TextField
-                id="outlined-basic"
                 label={label}
-                name={name}
                 variant="outlined"
                 type={type}
+                inputRef={ref}
                 sx={{
-                    width: {
-                        xs,
-                        sm,
-                        md,
-                    },
+                    width: { xs, sm, md },
                     marginBottom: "16px",
                     "& .MuiOutlinedInput-root": {
                         backgroundColor: "rgba(0, 0, 0, 0.6)",
-                        color: "#d1d5db", // texto cinza claro (Tailwind gray-300)
+                        color: "#d1d5db",
                         "& fieldset": {
-                            borderColor: "#9ca3af", // borda cinza (Tailwind gray-400)
+                            borderColor: !error ? "#9ca3af" : "#e50914",
                         },
                         "&:hover fieldset": {
-                            borderColor: "#a1a1aa", // hover mais forte
+                            borderColor: !error ? "#a1a1aa" : "#e50914",
                         },
                         "&.Mui-focused fieldset": {
-                            borderColor: "#d4d4d8", // quando está focado
+                            borderColor: !error ? "#d4d4d8" : "#e50914",
                         },
                     },
                     "& .MuiInputLabel-root": {
-                        color: "#9ca3af", // label
+                        color: "#9ca3af",
                     },
                     "& .MuiInputLabel-root.Mui-focused": {
-                        color: "#d4d4d8", // label quando focado
+                        color: "#d4d4d8",
                     },
                 }}
+                {...rest} // repassa onChange, onBlur, etc. do register
             />
-        </>
-    )
-}
+        );
+    }
+);

@@ -2,39 +2,28 @@
 
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useLogin } from "@/hooks/useLogin";
 import { Button } from "../_components/Button";
 import { Input } from "../_components/Input";
-import { useState } from "react";
 import { CircleX } from "lucide-react";
+import { CreateLoginSchema, createLoginSchema } from "@/schemas/createLoginSchema";
 
 export default function Login() {
-    const { handleValidationEmail, handleValidationPassword } = useLogin();
-    const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<CreateLoginSchema>({
+        resolver: zodResolver(createLoginSchema),
+        defaultValues: {
+            email: "",
+            password: "",
+        },
+    });
 
-    function handleProfile(formData: FormData) {
-        const email = formData.get("email") as string;
-        const password = formData.get("password") as string;
-
-        const validationEmail = handleValidationEmail(email);
-        const validationPassword = handleValidationPassword(password);
-
-        const errorIn: { email?: string, password?: string } = {}
-
-        if (!validationEmail.status) {
-            errorIn.email = validationEmail.error!;
-        }
-
-        if (!validationPassword.status) {
-            errorIn.password = validationPassword.error!;
-        }
-
-        if (Object.keys(errorIn).length > 0) {
-            setErrors(errorIn);
-            return;
-        }
-
+    function onSubmit() {
         redirect('/profile');
     }
 
@@ -46,24 +35,26 @@ export default function Login() {
                 </h1>
 
                 <div className="flex flex-col justify-center items-center gap-4">
-                    <form action={handleProfile}>
+
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="max-w-lg flex flex-col justify-center items-center gap-4">
 
                             <div className="flex flex-col items-center">
                                 <Input
                                     type="text"
                                     label="Email"
-                                    name="email"
                                     md="425px"
                                     sm="280px"
                                     xs="280px"
+                                    error={!!errors.email}
+                                    {...register("email")}
                                 />
 
                                 {errors.email && (
                                     <div className="flex items-center self-start gap-2">
-                                        <CircleX size={20} color="#ef4444" />
-                                        <p className="text-red-500 text-xs">
-                                            {errors.email}
+                                        <CircleX size={20} color="#e50914" />
+                                        <p className="text-colorButton text-xs">
+                                            {errors.email?.message}
                                         </p>
                                     </div>
                                 )}
@@ -73,17 +64,18 @@ export default function Login() {
                                 <Input
                                     type="password"
                                     label="Senha"
-                                    name="password"
                                     md="425px"
                                     sm="280px"
                                     xs="280px"
+                                    error={!!errors.password}
+                                    {...register("password")}
                                 />
 
                                 {errors.password && (
                                     <div className="flex items-center self-start gap-2 ">
-                                        <CircleX size={20} color="#ef4444" />
-                                        <p className="text-red-500 text-xs">
-                                            {errors.password}
+                                        <CircleX size={20} color="#e50914" />
+                                        <p className="text-colorButton text-xs">
+                                            {errors.password?.message}
                                         </p>
                                     </div>
                                 )}
