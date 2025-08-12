@@ -22,9 +22,8 @@ export const Intro = () => {
   });
 
 
-  function onSubmit(data: CreateIntroSchema) {
-    console.log(data.email);
-    redirect(`/register?email=${encodeURIComponent(data.email)}`);
+  function onSubmit() {
+    redirect('/register');
   }
 
   return (

@@ -11,9 +11,6 @@ import { CircleX } from "lucide-react";
 
 
 export default function Register() {
-    const searchParams = useSearchParams();
-    const email = searchParams.get("email");
-
     const {
         register,
         handleSubmit,
@@ -31,7 +28,6 @@ export default function Register() {
 
     function onSubmit(data: CreateRegisterSchema) {
         const result = {
-            email: email,
             name: data.name,
             password: data.password,
             date: data.date,
