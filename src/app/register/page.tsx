@@ -4,11 +4,29 @@ import { redirect } from "next/navigation";
 import { Button } from "../_components/Button";
 import { Input } from "../_components/Input";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { createRegisterSchema, CreateRegisterSchema } from "@/schemas/createRegisterSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CircleX } from "lucide-react";
 
 
 export default function Register() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<CreateRegisterSchema>({
+        resolver: zodResolver(createRegisterSchema),
+        defaultValues: {
+            name: "",
+            password: "",
+            date: "",
+            address: "",
+        },
+    });
 
-    function handleProfile() {
+
+    function onSubmit() {
         redirect('/profile');
     }
 
@@ -19,51 +37,105 @@ export default function Register() {
                     Cadastre-se
                 </h1>
 
-                <form action={handleProfile} className="max-w-lg flex flex-col justify-center items-center gap-4">
-                    <Input
-                        type="text"
-                        label="Nome Completo"
-                        name="name"
-                        md="425px"
-                        sm="280px"
-                        xs="280px"
-                    />
+                <div className="flex flex-col justify-center items-center gap-4">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="max-w-lg flex flex-col justify-center items-center gap-4">
 
-                    <Input
-                        type="password"
-                        label="Senha"
-                        name="password"
-                        md="425px"
-                        sm="280px"
-                        xs="280px"
-                    />
+                            <div className="flex flex-col items-center">
+                                <Input
+                                    type="text"
+                                    label="Nome Completo"
+                                    md="425px"
+                                    sm="280px"
+                                    xs="280px"
+                                    error={!!errors.name}
+                                    {...register("name")}
+                                />
 
-                    <Input
-                        type="text"
-                        label="Data de Nascimento"
-                        name="text_date"
-                        md="425px"
-                        sm="280px"
-                        xs="280px"
-                    />
+                                {errors.name && (
+                                    <div className="flex items-center self-start gap-2">
+                                        <CircleX size={20} color="#e50914" />
+                                        <p className="text-colorButton text-xs">
+                                            {errors.name?.message}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
 
-                    <Input
-                        type="address"
-                        label="Endereço"
-                        name="address"
-                        md="425px"
-                        sm="280px"
-                        xs="280px"
-                    />
+                            <div className="flex flex-col items-center">
+                                <Input
+                                    type="password"
+                                    label="Senha"
+                                    md="425px"
+                                    sm="280px"
+                                    xs="280px"
+                                    error={!!errors.password}
+                                    {...register("password")}
+                                />
 
-                    <div className="flex flex-col justify-center items-center gap-4">
-                        <Button.Root>
-                            <Button.Content className="w-[275px] md:w-[425px] py-2 bg-colorButton rounded-md hover:bg-colorButtonHover duration-300">
-                                <Button.Text text="Cadastrar" className="text-white text-lg font-bold" />
-                            </Button.Content>
-                        </Button.Root>
-                    </div>
-                </form>
+                                {errors.password && (
+                                    <div className="flex items-center self-start gap-2">
+                                        <CircleX size={20} color="#e50914" />
+                                        <p className="text-colorButton text-xs">
+                                            {errors.password?.message}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="flex flex-col items-center">
+                                <Input
+                                    type="text"
+                                    label="Data de Nascimento"
+                                    md="425px"
+                                    sm="280px"
+                                    xs="280px"
+                                    error={!!errors.date}
+                                    {...register("date")}
+                                />
+
+                                {errors.date && (
+                                    <div className="flex items-center self-start gap-2">
+                                        <CircleX size={20} color="#e50914" />
+                                        <p className="text-colorButton text-xs">
+                                            {errors.date?.message}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="flex flex-col items-center">
+                                <Input
+                                    type="text"
+                                    label="Endereço"
+                                    md="425px"
+                                    sm="280px"
+                                    xs="280px"
+                                    error={!!errors.address}
+                                    {...register("address")}
+                                />
+
+                                {errors.address && (
+                                    <div className="flex items-center self-start gap-2">
+                                        <CircleX size={20} color="#e50914" />
+                                        <p className="text-colorButton text-xs">
+                                            {errors.address?.message}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+
+                        </div>
+
+                        <div className="mt-4 flex flex-col justify-center items-center gap-4">
+                            <Button.Root>
+                                <Button.Content className="w-[275px] md:w-[425px] py-2 bg-colorButton rounded-md hover:bg-colorButtonHover duration-300">
+                                    <Button.Text text="Cadastrar" className="text-white text-lg font-bold" />
+                                </Button.Content>
+                            </Button.Root>
+                        </div>
+                    </form>
+                </div>
 
                 <p className="m-8 text-zinc-400 text-base">
                     Já possui uma conta?
