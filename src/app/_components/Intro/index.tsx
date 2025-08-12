@@ -1,15 +1,30 @@
 "use client"
 
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, CircleX } from "lucide-react"
 
 import { Button } from "../Button"
 import { Input } from "../Input"
 import { redirect } from "next/navigation"
+import { useForm } from "react-hook-form"
+import { createIntroSchema, CreateIntroSchema } from "@/schemas/createIntroSchema"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 export const Intro = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateIntroSchema>({
+    resolver: zodResolver(createIntroSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
 
-  function handleRegister() {
-    redirect("/register");
+
+  function onSubmit(data: CreateIntroSchema) {
+    console.log(data.email);
+    redirect(`/register?email=${encodeURIComponent(data.email)}`);
   }
 
   return (
@@ -27,20 +42,32 @@ export const Intro = () => {
         Quer assistir? Informe seu e-mail para criar sua assinatura.
       </label>
 
-      <div className="flex flex-col md:flex-row justify-center gap-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col md:flex-row justify-center gap-2">
 
-        <Input
-          type="text"
-          label="Email"
-          name="email"
-          xs="90vw"
-          sm="400px"
-          md="500px"
-        />
+        <div className="flex flex-col items-center">
+          <Input
+            type="text"
+            label="Email"
+            xs="90vw"
+            sm="400px"
+            md="500px"
+            error={!!errors.email}
+            {...register("email")}
+          />
+
+          {errors.email && (
+            <div className="flex items-center self-start gap-2">
+              <CircleX size={20} color="#e50914" />
+              <p className="text-colorButton text-xs">
+                {errors.email?.message}
+              </p>
+            </div>
+          )}
+        </div>
 
         <div>
           <Button.Root>
-            <Button.Content onClick={handleRegister} className="mt-2 md:mt-0 px-4 py-4 md:px-8 md:py-3 rounded-md bg-colorButton hover:bg-colorButtonHover duration-300">
+            <Button.Content type="submit" className="mt-2 md:mt-0 px-4 py-4 md:px-8 md:py-3 rounded-md bg-colorButton hover:bg-colorButtonHover duration-300">
               <div className="flex flex-row justify-center items-center gap-2">
                 <Button.Text text="Vamos lá" className="text-xl md:text-2xl text-white font-bold" />
 
@@ -49,7 +76,8 @@ export const Intro = () => {
             </Button.Content>
           </Button.Root>
         </div>
-      </div>
+
+      </form>
     </>
   )
 }

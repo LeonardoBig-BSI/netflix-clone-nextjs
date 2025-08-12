@@ -1,11 +1,10 @@
-import { isEmail } from "validator";
 import { z } from "zod";
 
 export const createRegisterSchema = z.object({
     name: z
         .string()
         .nonempty("Informe um email válido.")
-        .min(4, "O nome deve ter, no mínimo, 3 letras."),
+        .min(3, "O nome deve ter, no mínimo, 3 letras."),
     password: z
         .string()
         .min(4, { error: "A senha deve ter entre 4 a 60 caracteres." })

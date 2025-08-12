@@ -1,6 +1,6 @@
 "use client"
 
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { Button } from "../_components/Button";
 import { Input } from "../_components/Input";
 import Link from "next/link";
@@ -11,6 +11,9 @@ import { CircleX } from "lucide-react";
 
 
 export default function Register() {
+    const searchParams = useSearchParams();
+    const email = searchParams.get("email");
+
     const {
         register,
         handleSubmit,
@@ -26,7 +29,16 @@ export default function Register() {
     });
 
 
-    function onSubmit() {
+    function onSubmit(data: CreateRegisterSchema) {
+        const result = {
+            email: email,
+            name: data.name,
+            password: data.password,
+            date: data.date,
+            address: data.address
+        }
+
+        console.log(result);
         redirect('/profile');
     }
 
