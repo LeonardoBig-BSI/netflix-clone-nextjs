@@ -1,16 +1,14 @@
 "use client"
 
-import { ChevronRight } from "lucide-react";
 import { Button } from "./_components/Button";
 import { Header } from "./_components/Header";
-import { Input } from "./_components/Input";
-import { Profile } from "./_components/Profile";
 import { Intro } from "./_components/Intro";
 import { redirect } from "next/navigation";
 
 export default function Home() {
 
   function handleLogin() {
+
     redirect('/login');
   }
 
@@ -43,6 +41,7 @@ export default function Home() {
           <section className="px-4 mt-10 md:mt-28 flex flex-col justify-center items-center text-center">
             <Intro />
           </section>
+
         </div>
       </div>
     </main>

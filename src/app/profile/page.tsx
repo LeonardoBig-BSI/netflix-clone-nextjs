@@ -2,6 +2,7 @@ import { Button } from "../_components/Button";
 import { Profile } from "../_components/Profile";
 
 export default function ProfilePage() {
+
     return (
         <section>
             <Profile.Root>

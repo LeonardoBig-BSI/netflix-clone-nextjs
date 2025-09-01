@@ -7,7 +7,6 @@ import { CreateLoginSchema } from "@/schemas/createLoginSchema";
 
 export const useLogin = () => {
     const { user } = useSelector((rootReducer: RootState) => rootReducer.user);
-    console.log(user);
 
     function handleValidation(data: CreateLoginSchema) {
         if (!user) {
