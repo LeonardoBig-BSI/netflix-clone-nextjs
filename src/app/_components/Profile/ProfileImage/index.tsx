@@ -8,12 +8,17 @@ import profileYellow from '../images/profile-yellow.jpeg';
 import { Button } from "../../Button";
 
 export const ProfileImage = () => {
+
+    function handleBrowse() {
+        
+    }
+
     return (
         <div className="mt-8 flex flex-col md:flex-row justify-center items-center gap-8">
             
             <div className="flex flex-col items-center mb-8 md:mb-0 gap-2">
                 <Button.Root>
-                    <Button.Content className="text-zinc-500 text-xl hover:text-white">
+                    <Button.Content onClick={handleBrowse} className="text-zinc-500 text-xl hover:text-white">
                         <Image
                             src={profileRed}
                             alt="Perfil Vermelho"
