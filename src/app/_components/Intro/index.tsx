@@ -8,8 +8,13 @@ import { redirect } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { createIntroSchema, CreateIntroSchema } from "@/schemas/createIntroSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "@/redux/types"
+import { createEmailUser } from "@/redux/user/slice"
 
 export const Intro = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const {
     register,
     handleSubmit,
@@ -22,7 +27,11 @@ export const Intro = () => {
   });
 
 
-  function onSubmit() {
+  function onSubmit(data: CreateIntroSchema) {
+    dispatch(createEmailUser({
+      email: data.email,
+    }));
+
     redirect('/register');
   }
 

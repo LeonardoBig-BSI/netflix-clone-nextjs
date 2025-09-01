@@ -13,24 +13,16 @@ import { AppDispatch, RootState } from "@/redux/types";
 import { Button } from "../_components/Button";
 import { Input } from "../_components/Input";
 import { loginUser } from "@/redux/user/slice";
-import { ErrorsCredentialsLogin } from "@/types/errors-credentials-login";
+import { useLogin } from "../hooks/useLogin";
+import { ErrorsCredentials } from "@/types/errors-credentials-login";
 
 
 export default function Login() {
     const { user } = useSelector((rootReducer: RootState) => rootReducer.user);
     const dispatch = useDispatch<AppDispatch>();
-
-    const [errorsCredentials, setErrorsCredentials] = useState<ErrorsCredentialsLogin>({
-        email: {
-            status: false,
-            message: "",
-        },
-        password: {
-            status: false,
-            message: "",
-        }
-    })
-
+    const { handleValidation } = useLogin();
+    const [error, setError] = useState<ErrorsCredentials>({ errorStatus: false, message: "" });
+    
     const {
         register,
         handleSubmit,
@@ -44,39 +36,28 @@ export default function Login() {
     });
 
     function onSubmit(data: CreateLoginSchema) {
+        const response = handleValidation(data);
 
-        if (!user) {
-            throw new Error("Usuário não encontrado.");
+        if (response.errorStatus) {
+            setError({
+                errorStatus: response.errorStatus,
+                message: response.message
+            });
+
+            return;
         }
 
-        if (user.email !== data.email) {
-            setErrorsCredentials({
-                email: {
-                    status: true,
-                    message: "Não encontramos nenhuma conta com o email informado. Tente novamente ou crie uma conta."
-                }
-            });
+        if (!response.errorStatus) {
             
-            return;
+
+            dispatch(loginUser({
+                email: data.email,
+                password: data.password
+            }));
+
+            redirect('/profile');
         }
 
-        if (user.password !== data.password) {
-            setErrorsCredentials({
-                email: {
-                    status: true,
-                    message: `Senha incorreta para ${user.email} Você pode usar um código de acesso, redefinir sua senha ou tentar novamente.`
-                }
-            });
-
-            return;
-        }
-
-        dispatch(loginUser({
-            email: data.email,
-            password: data.password
-        }))
-
-        redirect('/profile');
     }
 
     return (
@@ -90,13 +71,14 @@ export default function Login() {
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="max-w-lg flex flex-col justify-center items-center gap-4">
-                            {errorsCredentials.email?.status && (
+                            {error.errorStatus && (
                                 <div className="mt-2 mb-8 max-w-[425px] h-24 px-8 bg-yellow-600 rounded-md">
                                     <p className="mt-4 text-black text-base text-left">
-                                        {errorsCredentials.email.message}
+                                        {error.message}
                                     </p>
                                 </div>
                             )}
+
                             <div className="flex flex-col items-center">
                                 <Input
                                     type="text"

@@ -1,6 +1,6 @@
 "use client"
 
-import { redirect, useSearchParams } from "next/navigation";
+import { redirect } from "next/navigation";
 import { Button } from "../_components/Button";
 import { Input } from "../_components/Input";
 import Link from "next/link";
@@ -8,9 +8,15 @@ import { useForm } from "react-hook-form";
 import { createRegisterSchema, CreateRegisterSchema } from "@/schemas/createRegisterSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleX } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/types";
+import { createUser } from "@/redux/user/slice";
 
 
 export default function Register() {
+    const { user } = useSelector((rootReducer: RootState) => rootReducer.user);
+    const dispatch = useDispatch<AppDispatch>();
+
     const {
         register,
         handleSubmit,
@@ -27,14 +33,14 @@ export default function Register() {
 
 
     function onSubmit(data: CreateRegisterSchema) {
-        const result = {
+        dispatch(createUser({
+            email: user?.email ?? "",
             name: data.name,
             password: data.password,
             date: data.date,
             address: data.address
-        }
+        }));
 
-        console.log(result);
         redirect('/profile');
     }
 

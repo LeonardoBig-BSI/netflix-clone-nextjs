@@ -9,3 +9,8 @@ export type ErrorsCredentialsLogin = {
         message: string;
     }
 }
+
+export type ErrorsCredentials = {
+    errorStatus?: boolean;
+    message?: string;
+}
